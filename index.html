@@ -1,125 +1,88 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>赵为的小小网站</title>
+ <title>网站正在制造中，敬请期待。</title>
+ <script type="text/javascript">
+window.onload = function () {
+    C = Math.cos; // cache Math objects
+    S = Math.sin;
+    U = 0;
+    w = window;
+    j = document;
+    d = j.getElementById("c");
+    c = d.getContext("2d");
+    W = d.width = w.innerWidth;
+    H = d.height = w.innerHeight;
+    c.fillRect(0, 0, W, H); // resize <canvas> and draw black rect (default)
+    c.globalCompositeOperation = "lighter"; // switch to additive color application
+    c.lineWidth = 0.2;
+    c.lineCap = "round";
+    var bool = 0, 
+        t = 0; // theta
+    d.onmousemove = function (e) {
+        if(window.T) {
+            if(D==9) { D=Math.random()*15; f(1); }
+            clearTimeout(T);
+        }
+        X = e.pageX; // grab mouse pixel coords
+        Y = e.pageY;
+        a=0; // previous coord.x
+        b=0; // previous coord.y 
+        A = X, // original coord.x
+        B = Y; // original coord.y
+        R=(e.pageX/W * 999>>0)/999;
+        r=(e.pageY/H * 999>>0)/999;
+        U=e.pageX/H * 360 >>0;
+        D=9;
+        g = 360 * Math.PI / 180;
+        T = setInterval(f = function (e) { // start looping spectrum
+            c.save();
+            c.globalCompositeOperation = "source-over"; // switch to additive color application
+            if(e!=1) {
+                c.fillStyle = "rgba(0,0,0,0.02)";
+                c.fillRect(0, 0, W, H); // resize <canvas> and draw black rect (default)
+            }
+            c.restore();
+            i = 25; while(i --) {
+                c.beginPath();
+                if(D > 450 || bool) { // decrease diameter
+                    if(!bool) { // has hit maximum
+                        bool = 1;
+                    }
+                    if(D < 0.1) { // has hit minimum
+                        bool = 0;
+                    }
+                    t -= g; // decrease theta
+                    D -= 0.1; // decrease size
+                }
+                if(!bool) {
+                    t += g; // increase theta
+                    D += 0.1; // increase size
+                }
+                q = (R / r - 1) * t; // create hypotrochoid from current mouse position, and setup variables (see: http://en.wikipedia.org/wiki/Hypotrochoid)
+                x = (R - r) * C(t) + D * C(q) + (A + (X - A) * (i / 25)) + (r - R); // center on xy coords
+                y = (R - r) * S(t) - D * S(q) + (B + (Y - B) * (i / 25));
+                if (a) { // draw once two points are set
+                    c.moveTo(a, b);
+                    c.lineTo(x, y)
+                }
+                c.strokeStyle = "hsla(" + (U % 360) + ",100%,50%,0.75)"; // draw rainbow hypotrochoid
+                c.stroke();
+                a = x; // set previous coord.x
+                b = y; // set previous coord.y
+            }
+            U -= 0.5; // increment hue
+            A = X; // set original coord.x
+            B = Y; // set original coord.y
+        }, 16);
+    }
+    j.onkeydown = function(e) { a=b=0; R += 0.05 }
+    d.onmousemove({pageX:300, pageY:290})
+}
  
-<style type="text/css">
-body {
-	margin-left: 0px;
-	margin-top: 0px;
-}
-#aa {
-	position: fixed;
-	height: 662px;
-	width: 1366px;
-	background: #FFF;
-}
-#bb {
-	background: #FFF;
-	position: absolute;
-	height: 401px;
-	width: 1398px;
-	left: -31px;
-	top: 0px;
-}
-#cc {
-	background: #09C;
-	position: absolute;
-	height: 63px;
-	width: 1404px;
-	left: -34px;
-	top: 418px;
-	font-size: 36px;
-	color: #FFF;
-}
-#dd {
-	position: absolute;
-	height: 124px;
-	width: 175px;
-	left: 1142px;
-	top: 136px;
-}
-#ee {
-	position: absolute;
-	height: 295px;
-	width: 510px;
-	left: 953px;
-	top: 70px;
-	line-height: 24px;
-}
-#ff {
-	position: absolute;
-	height: 66px;
-	width: 214px;
-	left: 600px;
-	top: 553px;
-	font-size: 45px;
-	font-weight: bold;
-}
-.gg {
-	font-size: 36px;
-}
-#aa #bb #ee table tr td {
-	color: #000;
-}
-#aa #bb #ee table {
-	color: #000;
-}
-#gg {
-	position: absolute;
-	height: 161px;
-	width: 195px;
-	left: 573px;
-	top: -55px;
-	font-size: 16px;
-}
-</style>
+</script>
 </head>
- 
 <body>
-<div id="aa">
-  <div id="cc">                                                            Python精通！&copy;</div>
-  <div id="bb">
-    <div id="ee">
-      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-        <tr>
-          <td><hr /></td>
-        </tr>
-        <tr>
-          <td><p>姓名：赵为</p></td>
-        </tr>
-        <tr>
-          <td>Email：zw_zhaowei@foxmail.com</td>
-        </tr>
-        <tr>
-          <td>bcm主页：https://shequ.codemao.cn/user/10103697</td>
-        </tr>
-        <tr>
-          <td>家乡：保定</a></td>
-        </tr>
-        <tr>
-        </tr>
-        <tr>
-          <td>会一点爬虫，能做一些生活用的小程序</a></td>
-        </tr>
-        <tr>
-          <td>身份：学生党</a></td>
-        </tr>
-          <td>也是一个HTML的萌新 </td>        
-        </tr>
-        <tr>
-          <td>欢迎一起进步，加油⛽️⛽️ </td>
-        </tr>
-      </table>
-    </div>
-  <div id="ff">
-    <div id="gg">
-      <p> </p>
-      <p> </p>
-      <p> </p>
-      <form id="form1" name="form1" method="post" action="">
-      </form>
-    </div>
-  一个☝️Python boy</div>
-</div>
+<canvas id="c"></canvas>
 </body>
+</html>

@@ -1,88 +1,130 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
+<!DOCTYPE html>
+<html>
 <head>
- <title>网站正在制造中，敬请期待。</title>
- <script type="text/javascript">
-window.onload = function () {
-    C = Math.cos; // cache Math objects
-    S = Math.sin;
-    U = 0;
-    w = window;
-    j = document;
-    d = j.getElementById("c");
-    c = d.getContext("2d");
-    W = d.width = w.innerWidth;
-    H = d.height = w.innerHeight;
-    c.fillRect(0, 0, W, H); // resize <canvas> and draw black rect (default)
-    c.globalCompositeOperation = "lighter"; // switch to additive color application
-    c.lineWidth = 0.2;
-    c.lineCap = "round";
-    var bool = 0, 
-        t = 0; // theta
-    d.onmousemove = function (e) {
-        if(window.T) {
-            if(D==9) { D=Math.random()*15; f(1); }
-            clearTimeout(T);
-        }
-        X = e.pageX; // grab mouse pixel coords
-        Y = e.pageY;
-        a=0; // previous coord.x
-        b=0; // previous coord.y 
-        A = X, // original coord.x
-        B = Y; // original coord.y
-        R=(e.pageX/W * 999>>0)/999;
-        r=(e.pageY/H * 999>>0)/999;
-        U=e.pageX/H * 360 >>0;
-        D=9;
-        g = 360 * Math.PI / 180;
-        T = setInterval(f = function (e) { // start looping spectrum
-            c.save();
-            c.globalCompositeOperation = "source-over"; // switch to additive color application
-            if(e!=1) {
-                c.fillStyle = "rgba(0,0,0,0.02)";
-                c.fillRect(0, 0, W, H); // resize <canvas> and draw black rect (default)
-            }
-            c.restore();
-            i = 25; while(i --) {
-                c.beginPath();
-                if(D > 450 || bool) { // decrease diameter
-                    if(!bool) { // has hit maximum
-                        bool = 1;
-                    }
-                    if(D < 0.1) { // has hit minimum
-                        bool = 0;
-                    }
-                    t -= g; // decrease theta
-                    D -= 0.1; // decrease size
-                }
-                if(!bool) {
-                    t += g; // increase theta
-                    D += 0.1; // increase size
-                }
-                q = (R / r - 1) * t; // create hypotrochoid from current mouse position, and setup variables (see: http://en.wikipedia.org/wiki/Hypotrochoid)
-                x = (R - r) * C(t) + D * C(q) + (A + (X - A) * (i / 25)) + (r - R); // center on xy coords
-                y = (R - r) * S(t) - D * S(q) + (B + (Y - B) * (i / 25));
-                if (a) { // draw once two points are set
-                    c.moveTo(a, b);
-                    c.lineTo(x, y)
-                }
-                c.strokeStyle = "hsla(" + (U % 360) + ",100%,50%,0.75)"; // draw rainbow hypotrochoid
-                c.stroke();
-                a = x; // set previous coord.x
-                b = y; // set previous coord.y
-            }
-            U -= 0.5; // increment hue
-            A = X; // set original coord.x
-            B = Y; // set original coord.y
-        }, 16);
-    }
-    j.onkeydown = function(e) { a=b=0; R += 0.05 }
-    d.onmousemove({pageX:300, pageY:290})
-}
- 
-</script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1" />	
+	<title>关于 Python进行时</title>
+
+	<link rel="stylesheet" href="./style.css" type="text/css" media="all" />
+	<link rel="shortcut icon" href="./images/a.png"/>
 </head>
-<body>
-<canvas id="c"></canvas>
+<body class="loading-process">
+<div class="loading">
+	<div class="loading-circle"></div>
+	<div class="loading-avatar"><img src="images/cs.jpg" alt="" width="100" height="100"></div>
+	<div class="loading-info">正在努力加载中...</div>
+</div>
+
+
+<div class="section-header">
+	<div class="section">
+		<nav class="nav" role="navigation">
+			<ul>
+				<li class="nav-about fade fade1"><a href="#about">关于</a></li>
+				<li class="nav-works fade fade4"><a href="#works">作品</a></li>
+				<li class="fade back-home"><a href="#top">首页</a></li>
+				<li class="nav-skill fade fade2"><a href="#skill">能力</a></li>
+				<li class="nav-contact fade fade3"><a href="#contact">联系</a></li>
+			</ul>
+		</nav>
+	</div>
+	<div class="nav-bg"></div>
+</div>
+<div class="home-bg">
+	<img src="images/cs.jpg" alt="" width="1000" height="667">
+</div>
+<div class="section-wrap section-fristpage">
+	<div class="section">
+		<div class="section-content">
+			<p class="fade fade1">Hi，我是Python进行时</p>
+			<p class="fade fade2">擅长Python和HTML这两种编程语言 ~</p>
+			<p class="fade fade3">也叫Python-HTML ，同时也是中国红客联盟初级会员</p>
+		</div>
+		<a href="#" class="scroll-tip fade fade4">向下滚动</a>
+	</div>
+</div>
+<div id="about" class="section-wrap section-about">
+	<div class="section">
+		<div class="about-content clearfix section-content">
+			<div class="left">
+				<h1>关于本人</h1>
+				<p class="fade fade1">2020年6月开始接触编程</p>
+				<p class="fade fade2">2020年7月-8月学习Python</p>
+				<p class="fade fade3">2020年9月学习基础HTML</p>
+				<p class="fade fade4">2020年11月接触硬件编程</p>
+				<p class="fade fade5">目前是一个6年级的小学生</p>
+				<p class="fade fade6">目前正在学micro bit</p>
+			</div>
+			<div class="right">
+			</div>
+		</div>
+	</div>
+</div>
+<div id="works" class="section-wrap section-works">
+	<div class="section">
+		<div class="works-content section-content">
+			<h1>近期作品</h1>
+			<p class="aasd">敬请期待</p>
+		</div>
+	</div>
+</div>
+<div id="skill" class="section-wrap section-skill">
+	<div class="section">
+		<div class="skill-content section-content">
+			<h1>技能水平</h1>
+			<ul>
+				<li class="fade fade1">熟练使用Python基础语法</li>
+				<li class="fade fade3">熟练使用Python拓展模块</li>
+				<li class="fade fade2">对 HTML5 和 CSS3 有一定了解。</li>
+				<li class="fade fade4">熟练掌握HTML的基础语法</li>
+				<li class="fade fade4">简单网页前端可以编写</li>
+				<li class="fade fade3">喜欢并使用github pages免费建站服务</li>
+				<li class="fade fade2">会使用git控制程序</li>
+				<li class="fade fade1">简单的micro bit控制程序可以编写。</li>
+				<li class="fade fade1">会制作一些很实用的程序</li>
+				<li class="fade fade4">会用TK做桌面应用程序</li>
+				<li class="fade fade2">对喜欢的事物抱有极大的兴趣和自学能力，喜欢接触新事物。</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="contact" class="section-wrap section-contact">
+	<div class="section">
+		<div class="contact-content clearfix section-content">
+			<h1>联系本人</h1>
+			<div class="left">
+				<div class="contact-ways fade fade1">
+					<h2>社交网络</h2>
+					<ul>
+						<li>邮箱：<a target="_blank" href="zw_zhaowei@foxmail.com">zw_zhaowei@foxmail.com</a></li>
+						<li>bcm:<a target="_blank" href="https://shequ.codemao.cn/user/10103697">@唯爱工作室_Python进行时</a></li>
+						<li>OSCHINA：<a target="_blank" href="https://my.oschina.net/Pythondoing">@Python进行时</a></li>
+						<li>中国红客联盟：<a target="_blank" href="http://www.cnhonkerarmy.com/?1268277">@Python进行时</a></li>
+						<li>Github：<a target="_blank" href="https://github.com/Python-HTML">@Python进行时</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="right fade fade3">
+				<h2>交流学习</h2>
+				<p>感谢@doutianyang给予前端CSS支持</p>
+				<ul>
+					<li>如果你也想要一个网站</li>
+					<li>本人可以使用Github Pages为你建站</li>
+					<li>联系QQ:1482076131</li>
+					<li>也可以发我邮箱</li>
+					<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2::52" alt="我的QQ号" title="我的QQ号"/></a>
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="overlay"></div>
+<div class="state-indicator"></div>
+
+<script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+<script src="js/global.js"></script>
+
 </body>
 </html>
